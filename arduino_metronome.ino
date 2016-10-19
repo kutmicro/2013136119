@@ -17,6 +17,9 @@ int piezoPin = 1;
 int ledPin = 3;
 int bpm = 60;                                                  // 기본 bpm 설정 : 60
 int keypad[] = {4, 5, 6, 7, 8, 9, 10, 11, 12, 13};             // 키패드 0~9
+int count = 1;
+int first = 1319;                                              // 첫박 소리
+int other = 1047;                                              // 다른 박자 소리
 int button = 2;
 int rhythm = 4;                                                // 박자
 int buttonstate = 0;
@@ -72,13 +75,33 @@ void loop()
   int piezo_pulse_time = 1;                                    // Duration of piezo tone in milliseconds
   int delayTime = (60000 / bpm);                               // Time between LED pulses' rising edges
 
-  digitalWrite(ledPin, HIGH);                                  // Turn on LED
+  /*digitalWrite(ledPin, HIGH);                                // Turn on LED
   tone(piezoPin, 1);                                           // Turn on piezo
   delay(piezo_pulse_time);                                     // Wait while piezo on
   noTone(piezoPin);                                            // Turn off piezo
   delay(led_pulse_time - piezo_pulse_time);                    // Wait while LED on, less piezo time
   digitalWrite(ledPin, LOW);                                   // Turn off LED
-  delay(delayTime - led_pulse_time - piezo_pulse_time);        // Wait while LED off
+  delay(delayTime - led_pulse_time - piezo_pulse_time);        // Wait while LED off*/
+  if (count%rhythm == 1 ) {                                    // 첫 박에 소리 출력
+    digitalWrite(ledPin, HIGH);                                // Turn on LED
+    tone(piezoPin, first);                                     // Turn on piezo
+    delay(piezo_pulse_time);                                   // Wait while piezo on
+    noTone(piezoPin);                                          // Turn off piezo
+    delay(led_pulse_time - piezo_pulse_time);                  // Wait while LED on, less piezo time
+    digitalWrite(ledPin, LOW);                                 // Turn off LED
+    delay(delayTime - led_pulse_time - piezo_pulse_time);      // Wait while LED off
+    count++;
+  }
+  else {                                                       // 다른 박자에 소리 출력
+    digitalWrite(ledPin, HIGH);
+    tone(piezoPin, first);
+    delay(piezo_pulse_time);
+    noTone(piezoPin);
+    delay(led_pulse_time - piezo_pulse_time);
+    digitalWrite(ledPin, LOW);
+    delay(delayTime - led_pulse_time - piezo_pulse_time);
+    count++;
+  }
   buttonstate = digitalRead(button);
   if(buttonstate != prevstate){                                
     if(buttonstate == 1){                                      // 버튼 누를때 마다 박자 카운트 증가
