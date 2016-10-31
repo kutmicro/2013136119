@@ -9,6 +9,7 @@
  * Must enter 3-digit amount. For example, enter 120 bpm with "*120" and 60 bpm with "*060"
  *
  */
+#include <LiquidCrystal.h>
 
 const int ON = HIGH;
 const int OFF = LOW;
@@ -25,6 +26,9 @@ int rhythm = 4;                                                // 박자
 int buttonstate = 0;
 int prevstate = 0;
 int rhythmcount = 1;
+LiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);
+
+int backLight = 13;    // pin 13 will control the backlight
 /*
  * setup() ?this function runs once when you turn your Arduino on
  */
@@ -64,6 +68,11 @@ void setup()
     pinMode(keypad[key_index], INPUT);
 
   attachInterrupt(0, read_keypad, FALLING);                    // *키를 누르면 bpm입력
+
+  pinMode(backLight, OUTPUT);
+  digitalWrite(backLight, HIGH); // turn backlight on. Replace 'HIGH' with 'LOW' to turn it off.
+  lcd.begin(16,2);              // columns, rows.  use 16,2 for a 16x2 LCD, etc.
+  lcd.clear();                  // start with a blank screen
 }
 
 /*
@@ -125,4 +134,9 @@ void loop()
     rhythm = 2;
     break;
   }
+  lcd.setCursor(0,0);           // set cursor to column 0, row 0 (the first row)
+  read_keypad();
+  lcd.print("bpm : ");      // change text to whatever you like. keep it clean!
+  lcd.setCursor(6,0);
+  lcd.print(bpm);
 }
