@@ -103,7 +103,7 @@ void loop()
   }
   else {                                                       // 다른 박자에 소리 출력
     digitalWrite(ledPin, HIGH);
-    tone(piezoPin, first);
+    tone(piezoPin, other);
     delay(piezo_pulse_time);
     noTone(piezoPin);
     delay(led_pulse_time - piezo_pulse_time);
