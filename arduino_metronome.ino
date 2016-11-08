@@ -26,7 +26,7 @@ int rhythm = 4;                                                // 박자
 int buttonstate = 0;
 int prevstate = 0;
 int rhythmcount = 1;
-LiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);
+LiquidCrystal lcd(12, 10, 5, 4, 3, 2);
 
 int backLight = 13;    // pin 13 will control the backlight
 /*
@@ -139,4 +139,9 @@ void loop()
   lcd.print("bpm : ");      // change text to whatever you like. keep it clean!
   lcd.setCursor(6,0);
   lcd.print(bpm);
+  for(int i=1 ; i<=rhythm ; i++){
+   lcd.setCursor(0,i);
+   lcd.print("♩");
+  }
+  lcd.clear();
 }
