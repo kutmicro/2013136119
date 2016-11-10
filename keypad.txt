@@ -1,0 +1,15 @@
+char key = keypad.getKey();
+if(key){
+for (digit_index = 1; digit_index <=3; digit_index ++) {     // 항상 3자리로 입력
+  bpm *= 10;  
+  key_pressed = 0;
+    while (!key_pressed) {                                     // 키패드 누르는동안 루프
+      while(key) {        // 키패드 스캔
+        
+        atoi(key)
+	bpm += key                                   
+        
+      }
+    }
+  }
+}
