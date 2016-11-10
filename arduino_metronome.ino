@@ -140,7 +140,7 @@ void loop()
   lcd.setCursor(6,0);
   lcd.print(bpm);
   for(int i=1 ; i<=rhythm ; i++){
-   lcd.setCursor(0,i);
+   lcd.setCursor(i,1);
    lcd.print("♩");
   }
   lcd.clear();
