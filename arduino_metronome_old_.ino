@@ -15,14 +15,14 @@
 const int ON = HIGH;
 const int OFF = LOW;
 
-int piezoPin = 1;
+int piezoPin = 30;
 int ledPin = 3;
 int bpm = 60;                                                  // 기본 bpm 설정 : 60
 int keypad[] = {4, 5, 6, 7, 8, 9, 10, 11, 12, 13};             // 키패드 0~9
 int count = 1;
 int first = 1319;                                              // 첫박 소리
 int other = 1047;                                              // 다른 박자 소리
-int button = 30;
+int button = 31;
 int rhythm = 4;                                                // 박자
 int buttonstate = 0;
 int prevstate = 0;
@@ -114,7 +114,7 @@ void loop()
     lcd.print("!");
     count = count+1;
     if (count>rhythm){
-      count=0;
+      count=1;
       lcd.clear();
     }
   }
