@@ -10,8 +10,8 @@ int button = 10;          // 버튼
 int bpmControl = A0;      // 가변저항
 int bpm;                  // 빠르기                               
 int count = 1;            // 박자 카운트
-int first = 2093;         // 첫박 소리
-int other = 262;          // 다른 박자 소리
+int first = 4186;         // 첫박 소리
+int other = 33;          // 다른 박자 소리
 int rhythm = 4;           // 박자
 int buttonstate = 0;      // 버튼 현재 상태
 int prevstate = 0;        // 버튼 이전 상태
